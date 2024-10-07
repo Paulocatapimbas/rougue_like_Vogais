@@ -1,0 +1,70 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Game();
+
+    }
+
+    static void Game()
+    {
+        Random random = new Random();
+        int desafio = random.Next(1, 5);
+        Console.WriteLine($"Escreva uma palavra com {desafio} vogais");
+        if (desafio == CountVowels())
+        {
+            Console.WriteLine("Venceu!");
+        }
+        else { Console.WriteLine("Perdeu!"); }
+    }
+    static string PlayerTurn()
+    {
+        Console.WriteLine("Escreva a palavra desejada:");
+        string palavra = Console.ReadLine(); // recebe a palavra
+        while (palavra != null)
+        {
+            Console.WriteLine("Erro escreva uma valor valido");
+            palavra = Console.ReadLine();
+        }
+        return palavra;
+    }
+
+    static int CountVowels()
+    {
+        int countA = 0, countE = 0, countI = 0, countO = 0, countU = 0; // conta quantas vogais tem
+        char converted_Tomin; // variavel para pegar o valor do character convertido para minusculo
+  
+
+        foreach (char characters_da_Palavra in PlayerTurn()) // loop para analizar todos os membros de um array,string ou coisa do tipo nesse caso ele percorre todos chars de uma string
+        {
+            if (char.IsLetter(characters_da_Palavra)) // analiza se o character da palavra e uma letra ou um numero
+            {
+                converted_Tomin = char.ToLower(characters_da_Palavra); // converte o character para minusculo para uniformizar o codigo
+                if (converted_Tomin == 'a')
+                {
+                    countA++;
+                }
+                else if (converted_Tomin == 'e')
+                {
+                    countE++;
+                }
+                else if (converted_Tomin == 'i')
+                {
+                    countI++;
+                }
+                else if (converted_Tomin == 'o')
+                {
+                    countO++;
+                }
+                else if (converted_Tomin == 'u')
+                {
+                    countU++;
+                }
+            }
+        }
+        return countA + countE + countI + countO + countU;
+    }
+}
