@@ -11,21 +11,36 @@ class Program
 
     static void Game()
     {
-        Random random = new Random();
-        int desafio = random.Next(1, 5);
-        Console.WriteLine($"Escreva uma palavra com {desafio} vogais");
-        if (desafio == CountVowels())
-        {
-            Console.WriteLine("Venceu!");
+        bool gameOver = false;
+        int pontuação = 0;
+        while (gameOver == false){
+            Random random = new Random();
+            int desafio = random.Next(1, 5);
+            Console.WriteLine($"Escreva uma palavra com {desafio} vogais");
+            int palavra = CountVowels();
+            if (desafio == palavra)
+            {
+                Console.Clear();
+                Console.WriteLine("Venceu!");
+                pontuação++;
+            }
+            else 
+            {
+                Console.Clear();
+                Console.WriteLine("-Game Over-");
+                Console.WriteLine($"Palavra com {palavra} Vogais, Objetivo {desafio}");
+                Console.WriteLine($"Pontuação de {pontuação}");
+                gameOver = true; 
+            }
         }
-        else { Console.WriteLine("Perdeu!"); }
     }
     static string PlayerTurn()
     {
         Console.WriteLine("Escreva a palavra desejada:");
         string palavra = Console.ReadLine(); // recebe a palavra
-        while (palavra != null)
+        while (palavra == "")
         {
+            Console.Clear();
             Console.WriteLine("Erro escreva uma valor valido");
             palavra = Console.ReadLine();
         }
